@@ -11,24 +11,20 @@ import os, settings
 def createFolders():
     # check for folder
     try:
+        # check for folder
         os.listdir(moveFolder)
     except FileNotFoundError:
         # create root folder
         os.system("mkdir %s%s" % (settings.homeDirectory, settings.moveTo))
-        # creating folders
-        for folderName in settings.fileTypes:
-            os.system("mkdir %s%s%s/" % (settings.homeDirectory, settings.moveTo, folderName))
             
-
-
 # define file type
 def defineFolder(typeFile):
 
+    # initiate folder name 
+    folderName = "other"
+
     # start loop for looking files in database
     for fType in settings.fileTypes:
-
-        # initiate folder name 
-        folderName = "other"
 
         # start logick
         if typeFile in settings.fileTypes[fType]:
@@ -40,6 +36,8 @@ def defineFolder(typeFile):
 
 # define all specsymbols
 def defineSpace(filePath):
+    # define symbols for backslash
+    symbols = [" ","(",")",","]
 
     # define new file path
     newFilePath = ""
@@ -48,7 +46,7 @@ def defineSpace(filePath):
     for item in filePath:
 
         # if space add \
-        if item == " " or item == "(" or item == ")":
+        if item in symbols:
             newFilePath += "\\"
         
         # add current symb
@@ -62,21 +60,10 @@ def defineSpace(filePath):
 # 
 
 # patch to downloads folder
-downloadFolder = settings.homeDirectory + settings.downloadFolderName
+downloadFolder = "%s/%s" % (settings.homeDirectory, settings.downloadFolderName)
 
 # patch to move
-moveFolder = settings.homeDirectory + settings.moveTo
-
-# dict with folder pathes
-folders = {
-    "docs": downloadFolder + "docs/",
-    "images": downloadFolder + "images/",
-    "music": downloadFolder + "musics/",
-    "app": downloadFolder + "apps/",
-    "archiv": downloadFolder + "archives/",
-    "torrent": downloadFolder + "torrents/",
-    "other": downloadFolder + "others/"
-}
+moveFolder = "%s/%s/" % (settings.homeDirectory, settings.moveTo)
 
 # 
 # Start app
@@ -100,11 +87,18 @@ for item in dirs:
     # folder for file
     folderForFile = defineFolder(typeName)
 
+    # check folder
+    try:
+        os.listdir(moveFolder + folderForFile)
+    except FileNotFoundError:
+        os.system("mkdir %s%s" % (moveFolder, folderForFile))
+
     # make comand to terminal
     command = "mv %s %s" % (downloadFolder + defineSpace(item) , moveFolder + folderForFile)
 
     # print command
-    print("%s moved to %s" % (item, folderForFile))
+    # print("%s moved to %s" % (item, folderForFile))
+    print(command)
 
     # move file
-    os.system(command)
+    # os.system(command)

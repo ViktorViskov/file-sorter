@@ -1,11 +1,11 @@
 # home directory (/home/user)
-homeDirectory = "/home/viktor/"
+homeDirectory = "/home/viktor"
 
-# download folder name (download/)
-downloadFolderName = "Загрузки/"
+# download folder name (download)
+downloadFolderName = "Загрузки"
 
-# move to folders (target/)
-moveTo = "fromNet/"
+# move to folders (target)
+moveTo = "fromNet"
 
 # type files
 fileTypes = {
@@ -45,6 +45,5 @@ fileTypes = {
     ],
     "torrent": [
         "torrent"
-
     ]
 }
