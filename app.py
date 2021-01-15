@@ -15,7 +15,7 @@ def createFolders():
         os.listdir(moveFolder)
     except FileNotFoundError:
         # create root folder
-        os.system("mkdir %s%s" % (settings.homeDirectory, settings.moveTo))
+        os.system("mkdir %s/%s" % (settings.homeDirectory, settings.moveTo))
             
 # define file type
 def defineFolder(typeFile):
@@ -40,7 +40,7 @@ def defineSpace(filePath):
     symbols = [" ","(",")",","]
 
     # define new file path
-    newFilePath = ""
+    newFilePath = "/"
 
     # check all symbols
     for item in filePath:
@@ -97,8 +97,10 @@ for item in dirs:
     command = "mv %s %s" % (downloadFolder + defineSpace(item) , moveFolder + folderForFile)
 
     # print command
-    # print("%s moved to %s" % (item, folderForFile))
-    print(command)
+    print("%s moved to %s" % (item, folderForFile))
+    
+    # print command for debugging
+    # print(command)
 
     # move file
-    # os.system(command)
+    os.system(command)
