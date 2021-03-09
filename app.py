@@ -23,11 +23,11 @@ def folderIsCreated(pathToFolder, folderName):
 # define file type
 def defineFolder(typeFile):
 
+    # initiate folder name 
+    folderName = "other"
+
     # start loop for looking files in database
     for fType in settings.fileTypes:
-
-        # initiate folder name 
-        folderName = "other"
 
         # start logick
         if typeFile in settings.fileTypes[fType]:
