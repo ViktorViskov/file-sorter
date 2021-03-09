@@ -1,11 +1,11 @@
 # home directory (/home/user)
-homeDirectory = "/home/viktor/"
+homeDirectory = "/home/viktor"
 
-# download folder name (download/)
-downloadFolderName = "Загрузки/"
+# download folder name (download)
+downloadFolderName = "Загрузки"
 
-# move to folders (target/)
-moveTo = "fromNet/"
+# move to folders (target)
+moveTo = "Архив"
 
 # type files
 fileTypes = {
@@ -14,7 +14,7 @@ fileTypes = {
         "odt",
         "doc",
         "docx",
-        
+
     ],
     "images": [
         "jpg",
@@ -32,19 +32,29 @@ fileTypes = {
     "app": [
         "deb",
         "run",
-        "exe"
-
+        "exe",
+        "msi"
     ],
     "archiv": [
         "zip",
         "tar",
         "gz",
         "7z",
-        "rar"
-
+        "rar",
+        "bz2"
     ],
     "torrent": [
         "torrent"
-
+    ],
+    "disk_images": [
+        'iso'
+    ],
+    "media": [
+        'm3u8',
+        'm3u'
+    ],
+    "pages": [
+        'html',
+        'php'
     ]
 }

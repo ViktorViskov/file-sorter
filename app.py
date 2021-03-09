@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 #
 # import libs
 # 
@@ -7,18 +9,15 @@ import os, settings
 # Functions
 #
 
-# create folders
-def createFolders():
-    # check for folder
+# function for check folder 
+def folderIsCreated(pathToFolder, folderName):
+    # catch errors
     try:
-        os.listdir(moveFolder)
+        # checking
+        os.listdir("%s/%s" % (pathToFolder, folderName))
     except FileNotFoundError:
-        # create root folder
-        os.system("mkdir %s%s" % (settings.homeDirectory, settings.moveTo))
-        # creating folders
-        for folderName in settings.fileTypes:
-            os.system("mkdir %s%s%s/" % (settings.homeDirectory, settings.moveTo, folderName))
-            
+        # create folder
+        os.system("mkdir %s/%s" % (pathToFolder, folderName))
 
 
 # define file type
@@ -38,61 +37,31 @@ def defineFolder(typeFile):
     # return folder name
     return folderName
 
-# define all specsymbols
-def defineSpace(filePath):
-
-    # define new file path
-    newFilePath = ""
-
-    # check all symbols
-    for item in filePath:
-
-        # if space add \
-        if item == " " or item == "(" or item == ")":
-            newFilePath += "\\"
-        
-        # add current symb
-        newFilePath += item
-    
-    # return string
-    return newFilePath
-
 # 
 # Variables
 # 
 
 # patch to downloads folder
-downloadFolder = settings.homeDirectory + settings.downloadFolderName
+downloadFolder = "%s/%s" % (settings.homeDirectory, settings.downloadFolderName)
 
-# patch to move
-moveFolder = settings.homeDirectory + settings.moveTo
-
-# dict with folder pathes
-folders = {
-    "docs": downloadFolder + "docs/",
-    "images": downloadFolder + "images/",
-    "music": downloadFolder + "musics/",
-    "app": downloadFolder + "apps/",
-    "archiv": downloadFolder + "archives/",
-    "torrent": downloadFolder + "torrents/",
-    "other": downloadFolder + "others/"
-}
+# patch to target folder
+targetFolder = "%s/%s" % (settings.homeDirectory, settings.moveTo)
 
 # 
 # Start app
 # 
 
-# check and creating folders for moving
-createFolders()
+# check for target folder
+folderIsCreated(settings.homeDirectory, settings.moveTo)
 
 # get all files in directory
-dirs = os.listdir(downloadFolder)
+files = os.listdir(downloadFolder)
 
 # start loop for moving
-for item in dirs:
+for fileName in files:
 
     # make array with name and type
-    nameArr = item.split(".")
+    nameArr = fileName.split(".")
 
     # to lower case file type
     typeName = nameArr[len(nameArr) - 1].lower()
@@ -100,11 +69,14 @@ for item in dirs:
     # folder for file
     folderForFile = defineFolder(typeName)
 
+    # check folder availability
+    folderIsCreated(targetFolder, folderForFile)
+
     # make comand to terminal
-    command = "mv %s %s" % (downloadFolder + defineSpace(item) , moveFolder + folderForFile)
+    command = "mv '%s/%s' '%s/%s'" % (downloadFolder, fileName, targetFolder, folderForFile)
 
     # print command
-    print("%s moved to %s" % (item, folderForFile))
+    print("moving %s to %s" % (fileName, folderForFile))
 
     # move file
     os.system(command)
