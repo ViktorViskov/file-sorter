@@ -1,8 +1,8 @@
 # home directory (/home/user)
-homeDirectory = "/home/viktor"
+homeDirectory = "C:\\Users\\Viktor"
 
 # download folder name (download)
-downloadFolderName = "Загрузки"
+downloadFolderName = "Downloads"
 
 # move to folders (target)
 moveTo = "Архив"

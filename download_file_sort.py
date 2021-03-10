@@ -14,10 +14,10 @@ def folderIsCreated(pathToFolder, folderName):
     # catch errors
     try:
         # checking
-        os.listdir("%s/%s" % (pathToFolder, folderName))
+        os.listdir("%s\\%s" % (pathToFolder, folderName))
     except FileNotFoundError:
         # create folder
-        os.system("mkdir %s/%s" % (pathToFolder, folderName))
+        os.system("mkdir %s\\%s" % (pathToFolder, folderName))
 
 
 # define file type
@@ -42,10 +42,10 @@ def defineFolder(typeFile):
 # 
 
 # patch to downloads folder
-downloadFolder = "%s/%s" % (settings.homeDirectory, settings.downloadFolderName)
+downloadFolder = "%s\\%s" % (settings.homeDirectory, settings.downloadFolderName)
 
 # patch to target folder
-targetFolder = "%s/%s" % (settings.homeDirectory, settings.moveTo)
+targetFolder = "%s\\%s" % (settings.homeDirectory, settings.moveTo)
 
 # 
 # Start app
@@ -73,10 +73,13 @@ for fileName in files:
     folderIsCreated(targetFolder, folderForFile)
 
     # make comand to terminal
-    command = "mv '%s/%s' '%s/%s'" % (downloadFolder, fileName, targetFolder, folderForFile)
+    command = "move \"%s\\%s\" \"%s\\%s\"" % (downloadFolder, fileName, targetFolder, folderForFile)
 
     # print command
-    print("moving %s to %s" % (fileName, folderForFile))
+    print("moving %s to %s\\" % (fileName, folderForFile))
+
+    # debug
+    # print(command)
 
     # move file
     os.system(command)
