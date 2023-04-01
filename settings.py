@@ -1,14 +1,14 @@
 # home directory (/home/user)
-homeDirectory = "/home/viktor"
+home_directory = "/home/viktor"
 
 # download folder name (download)
-downloadFolderName = "Загрузки"
+download_folder = "Завантажене"
 
 # move to folders (target)
-moveTo = "Архив"
+move_to = "Archive"
 
 # type files
-fileTypes = {
+file_rools = {
     "docs": [
         "pdf",
         "odt",
