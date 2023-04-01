@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 from os import listdir
 from os import mkdir
-from os import system
 from os.path import isdir
+from shutil import move
 
 import settings
 
@@ -40,11 +40,6 @@ for file_name in files:
 
     create_folder(f"{target_folder_path}/{folder_for_file}")
 
-    # move file by system command
-    command = "mv '%s/%s' '%s/%s'" % (download_folder_path, file_name, target_folder_path, folder_for_file)
-
-    # print command
     print("moving %s to %s" % (file_name, folder_for_file))
+    move(f"{download_folder_path}/{file_name}", f"{target_folder_path}/{folder_for_file}")
 
-    # move file
-    system(command)
